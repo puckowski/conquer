@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="core\file.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\function.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\global.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\header.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\strings.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Thread.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\timer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="datatype\Datatype.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keyword\Keyword.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keyword\keywordCall.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keyword\keywordDetach.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keyword\keywordJoin.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keyword\keywordPrint.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keyword\keywordRead.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keyword\keywordTrue.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="operator\Operator.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="reserved\Reserved.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="variable\Array.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="variable\Property.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="variable\TypeChecker.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="variable\TypedProperty.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="variable\variable.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="variable\VariableFactory.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="variable\VariableStore.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="image\CImg.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\stringFunction.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\fileFunction.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\intFunction.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\doubleFunction.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\boolFunction.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="file\FileStore.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keyword\keywordDelete.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keyword\keywordSystem.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keyword\keywordLock.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keyword\keywordUnlock.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\tinydir.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\fast_mutex.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keyword\keywordPrintln.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keyword\keywordPop.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keyword\keywordPush.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

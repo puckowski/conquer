@@ -1,0 +1,89 @@
+
+int inputImage[];
+int inputWidth;
+int inputHeight;
+
+file inputFile;
+inputFile = "..\testing\images\skyline.bmp";
+inputFile.read_into_array(inputImage, inputWidth, inputHeight, 1);
+
+int sizeOfInputImage;
+sizeOfInputImage = inputWidth;
+sizeOfInputImage *= inputHeight;
+
+int newWidth;
+int newHeight;
+
+print "Enter new width in pixels: ";
+readln >> newWidth;
+
+print "Enter new height in pixels: ";
+readln >> newHeight;
+
+println "Width: " << newWidth;
+println "Height: " << newHeight;
+
+int sizeOfOutputImage;
+sizeOfOutputImage = newWidth;
+sizeOfOutputImage *= newHeight;
+
+int output[sizeOfOutputImage];
+
+int xRatio;
+int yRatio;
+
+xRatio = inputWidth;
+xRatio *= 65536;
+xRatio /= newWidth;
+xRatio += 1;
+
+yRatio = inputHeight;
+yRatio *= 65536;
+yRatio /= newHeight;
+yRatio += 1;
+
+int px;
+int py;
+
+int index1;
+int index2;
+
+int outIndex;
+int inIndex;
+int value;
+
+println "Loop...";
+
+while index1 < newHeight {
+	while index2 < newWidth {
+		px = index2;
+		px *= xRatio;
+		px /= 65536;
+		
+		py = index1;
+		py *= yRatio;
+		py /= 65536;
+		
+		outIndex = index1;
+		outIndex *= newWidth;
+		outIndex += index2;
+
+		inIndex = py;
+		inIndex *= inputWidth;
+		inIndex += px;
+				
+		value = inputImage[inIndex];
+		output[outIndex] = value;
+		
+		index2 += 1;
+	}
+	
+	index1 += 1;
+	index2 = 0;
+}
+
+println "Writing scaled image...";
+
+file outputFile;
+outputFile = "homogeneity_test.bmp";
+outputFile.write_array(output, newWidth, newHeight, 1);

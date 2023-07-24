@@ -1,0 +1,91 @@
+
+int inputImage[];
+int inputWidth;
+int inputHeight;
+
+file inputFile;
+inputFile = "..\testing\images\Landscape_2_6750px_2250px.bmp";
+inputFile.read_into_array(inputImage, inputWidth, inputHeight, 1);
+
+int sizeOfInputImage;
+sizeOfInputImage = inputWidth;
+sizeOfInputImage *= inputHeight;
+
+int newWidth;
+int newHeight;
+
+print "Enter new width in pixels: ";
+readln >> newWidth;
+
+print "Enter new height in pixels: ";
+readln >> newHeight;
+
+println "Width: " << newWidth;
+println "Height: " << newHeight;
+
+int sizeOfOutputImage;
+sizeOfOutputImage = newWidth;
+sizeOfOutputImage *= newHeight;
+
+int output[sizeOfOutputImage];
+
+double xRatio;
+double yRatio;
+double tempDouble;
+
+inputWidth.to_double(xRatio);
+newWidth.to_double(tempDouble);
+xRatio /= tempDouble;
+
+inputHeight.to_double(yRatio);
+newHeight.to_double(tempDouble);
+yRatio /= tempDouble;
+
+double px;
+double py;
+
+int index1;
+int index2;
+
+int outIndex;
+int inIndex;
+int value;
+
+int tempInt1;
+int tempInt2;
+
+println "Loop...";
+
+while index1 < newHeight {
+	while index2 < newWidth {
+		index2.to_double(px);
+		px *= xRatio;
+		px.to_int(tempInt1);
+		
+		index1.to_double(py);
+		py *= yRatio;
+		py.to_int(tempInt2);
+		
+		outIndex = index1;
+		outIndex *= newWidth;
+		outIndex += index2;
+		
+		inIndex = tempInt2;
+		inIndex *= inputWidth;
+		inIndex += tempInt1;
+		
+		value = inputImage[inIndex];
+		output[outIndex] = value;
+		
+		index2 += 1;
+	}
+	
+	index1 += 1;
+	index2 = 0;
+}
+
+println "Writing scaled image...";
+
+file outputFile;
+outputFile = "homogeneity_test.bmp";
+outputFile.write_array(output, newWidth, newHeight, 1);

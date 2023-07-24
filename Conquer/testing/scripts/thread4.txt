@@ -1,0 +1,263 @@
+
+int inputImage[];
+int inputWidth;
+int inputHeight;
+
+file inputFile;
+inputFile = "..\testing\images\Castle_10000px_3678px.bmp";
+inputFile.read_into_array(inputImage, inputWidth, inputHeight, 1);
+
+int sizeOfInputImage;
+sizeOfInputImage = inputWidth;
+sizeOfInputImage *= inputHeight;
+
+int homogeneityOutput[sizeOfInputImage];
+
+int high;
+int new_hi;
+int new_low;
+
+int userThreshold;
+
+/*
+print "Enter threshold for edge detection [0, 255]: ";
+readln >> userThreshold;
+*/
+
+userThreshold = 40;
+high = userThreshold;
+
+new_hi = 255;
+new_low = 0;
+
+func {
+	int rowStart;
+	int colStart;
+	
+	int rowEnd;
+	int colEnd;
+	
+	rowStart = start; 
+	rowEnd = end;
+	rowEnd -= 1; 
+
+	unlock start;
+	unlock end;
+
+	colEnd = inputWidth;
+	colEnd -= 1;
+
+	int maxDiff;
+
+	int aStart;
+	int aEnd;
+	int bStart;
+	int bEnd;
+
+	aEnd = 1;
+	bEnd = 1;
+
+	int index;
+	int diff;
+	int diff2;
+
+	int tempRow;
+
+	println "Performing homogeneity edge detection function...";
+	
+	while rowStart <= rowEnd
+	{		
+		colStart = 1;
+
+		while colStart < colEnd
+		{		
+			maxDiff = 0;
+
+			aStart = -1;
+			bStart = -1;
+
+			while aStart <= aEnd
+			{
+				while bStart <= bEnd
+				{
+					index = rowStart;
+					index *= inputWidth;
+					index += colStart;
+
+					diff = inputImage[index];
+
+					index = rowStart;
+					index *= inputWidth;
+
+					tempRow = aStart;
+					tempRow *= inputWidth;
+					index += tempRow;
+					
+					index += colStart;
+					index += bStart;
+
+					diff2 = inputImage[index];
+
+					diff -= diff2;
+					diff.abs(diff);
+
+					if diff > maxDiff
+					{
+						maxDiff = diff;
+					}
+
+					bStart += 1;
+				}
+
+				aStart += 1;
+			}
+
+			index = rowStart;
+			index *= inputWidth;
+			index += colStart;
+
+			homogeneityOutput[index] = maxDiff;
+
+			colStart += 1;
+		}
+
+		rowStart += 1;
+		println rowStart;
+	}
+}
+
+int targetNumberOfThreads;
+targetNumberOfThreads = 4;
+
+int numberOfThreads;
+
+int start;
+int end;
+int rowsPerThread;
+
+func2 {
+	rowsPerThread = inputHeight;
+	rowsPerThread /= targetNumberOfThreads;
+	
+	lock start;
+	lock end;
+	
+	start = 1;
+	end = rowsPerThread;
+	
+	println "Starting at " << start << " and ending at " << end;
+	detach func; 
+	
+	numberOfThreads = 1;
+	
+	while numberOfThreads < targetNumberOfThreads {	
+		lock start;
+		lock end;
+	
+		start = rowsPerThread;
+		start *= numberOfThreads;
+		start -= 1;
+		
+		end += rowsPerThread;
+		
+		println "Starting at " << start << " and ending at " << end;
+		detach func;
+		
+		numberOfThreads += 1;
+	}
+}
+
+println "Starting...";
+
+join func2;
+/*
+func3 {
+	println "Thresholding values...";
+
+	int rowStart;
+	int colStart;
+	
+	int rowEnd;
+	int colEnd;
+		
+	rowStart = start;
+	rowEnd = end; 
+	rowEnd -= 1;
+	
+	unlock start;
+	unlock end;
+
+	colEnd = inputWidth;
+	colEnd -= 1;
+	
+	int index;
+	int tempThreshold;
+	
+	while rowStart < rowEnd
+	{
+		colStart = 0;
+
+		while colStart < colEnd
+		{
+			index = rowStart;
+			index *= inputWidth;
+			index += colStart;
+
+			tempThreshold = homogeneityOutput[index];
+
+			if tempThreshold > high
+			{
+				homogeneityOutput[index] = new_hi;
+			}
+
+			if tempThreshold <= high
+			{
+				homogeneityOutput[index] = new_low;
+			}
+			
+			colStart += 1;
+		}
+
+		rowStart += 1;
+	}
+}
+
+func4 {
+	start = 1;
+	end = rowsPerThread;
+	
+	lock end;
+	lock start;
+	
+	println "Starting at " << start << " and ending at " << end;
+	detach func3;
+	
+	numberOfThreads = 1;
+
+	while numberOfThreads < targetNumberOfThreads {
+		lock end;
+		lock start;
+		
+		start = rowsPerThread;
+		start *= numberOfThreads;
+		start -= 1;
+		
+		end += rowsPerThread;
+		
+		println "Starting at " << start << " and ending at " << end;
+		detach func3;
+		
+		numberOfThreads += 1;
+	}
+}
+
+numberOfThreads = 1;
+join func4;
+*/
+println "Writing homogeneity array...";
+
+file outputFile;
+outputFile = "homogeneity_test.bmp";
+outputFile.write_array(homogeneityOutput, inputWidth, inputHeight, 1);
+
+println "Done.";
